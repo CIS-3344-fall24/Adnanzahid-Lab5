@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab 5 - JavaScript</title>
+</head>
+
+<body>
+  <h1>Lab 5 - Working with Objects and Strings</h1>
+
+  <h2>Object Structure & Creating Objects - Tasks 1, 2, 3, 4</h2>
+  <script>
+    const student = {
+      name: "adnan",
+      age: 24,
+      grade: "A+",
+      introduce: function () {
+        console.log("Hi I am " + this.name + " and I am " + this.age + " years old")
+      }
+    }
+
+    student.introduce();
+
+    student.major = "programming"
+    student.age = 27
+
+    console.log(student)
+    console.log(student.name)
+    console.log(student.grade)
+    student.introduce()
+
+    student.address = {
+      country: "USA",
+      city: "New York"
+    }
+
+    console.log(student.address.city)
+  </script>
+
+  <h2>Working with Strings - Task 5</h2>
+  <script>
+    // Task 5: String Methods
+    // Write your code here
+    message = " Hello, JavaScript! JavaScript is a very good language";
+
+    console.log(message.toUpperCase());
+
+    console.log(message.toLowerCase());
+
+    console.log(message.concat(" Hello World"));
+
+    console.log(message.trim());
+
+    console.log(message.trimStart());
+
+    console.log(message.trimEnd());
+
+    console.log(message.padStart(22, '#'));
+
+    console.log(message.padEnd(21, '$'));
+
+    console.log(message.repeat(2));
+
+    console.log(message.replace("JavaScript", "JS"));
+
+    console.log(message.replaceAll(" ", "-"));
+
+    console.log(message.split(" "));
+
+    console.log(message.indexOf("JavaScript"));
+
+    console.log(message.lastIndexOf("o"));
+
+    console.log(message.search("JavaScript"));
+
+    console.log(message.match(/JavaScript/));
+
+    console.log(message.matchAll(/o/g));
+
+    console.log(message.includes("JavaScri"));
+
+    console.log(message.startsWith("llo"));
+
+    console.log(message.endsWith("! ")); 
+  </script>
+
+  <h2>If-Else Statements - Task 6</h2>
+  <script>
+    function checkGrade(grade) {
+      if (grade > 90) {
+        console.log("Excellent");
+      } else if (grade >= 70 && grade < 90) {
+        console.log("Good");
+      } else {
+        console.log("Needs Improvement");
+      }
+    }
+
+    checkGrade(95);
+    checkGrade(85);
+    checkGrade(65);
+
+  </script>
+
+  <h2>For Loops - Task 7</h2>
+  <script>
+    // Task 7: Write your createCounter function and processCounterCalls function here
+    function createCounter(init) {
+      let value = init;
+      const obj = {
+        increment: function () {
+          ++value;
+          return value;
+        },
+        decrement: function () {
+          --value;
+          return value;
+        },
+        reset: function () {
+          value = init;
+          return value;
+        }
+      }
+
+      return obj;
+    }
+
+    function processCounterCalls(init, calls) {
+      const counter = createCounter(init);
+      const output = [];
+
+      for (let i = 0; i < calls.length; i++) {
+        const methodName = calls[i];
+        if (methodName === "increment") {
+          output.push(counter.increment());
+        } else if (methodName === "decrement") {
+          output.push(counter.decrement());
+        } else if (methodName === "reset") {
+          output.push(counter.reset());
+        }
+      }
+
+      return output;
+    }
+
+    console.log(processCounterCalls(7, ["decrement", "increment", "reset"]))
+
+
+  </script>
+
+  <h2>Creating and Modifying Arrays - Tasks 8, 9, 10</h2>
+  <script>
+    // Task 8: Creating and accessing arrays
+    // Write your code here
+    const fruits = ["apple", "banana", "orange"]
+    console.log(fruits[0])
+    console.log(fruits[2])
+
+    // Task 9: Modifying arrays
+    // Write your code here
+    fruits.push("grape")
+
+    fruits.shift()
+
+    console.log(fruits)
+
+    // Task 10: Iterating over arrays
+    // Write your code here
+
+    for (let i = 0; i < fruits.length; i++) {
+      console.log(fruits[i]);
+    }
+  </script>
+
+  <h2>Library System - Task 11</h2>
+  <script>
+    // Task 11: Book constructor and borrowBook function
+    // Write your code here
+
+    function Book(title, author, yearPublished, isAvailable) {
+      this.title = title;
+      this.author = author;
+      this.yearPublished = yearPublished;
+      this.isAvailable = isAvailable ? "Yes" : "No";
+
+      this.getDetails = function () {
+        return "Title: " + this.title + ", Author:" + this.author + ", Year:" + this.yearPublished + ", Available:" + this.isAvailable;
+      };
+    }
+
+
+    const book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 1920, false);
+    const book2 = new Book("1984", "George Orwell", 2009, false);
+    const book3 = new Book("To Kill a Mockingbird", "Harper Lee", 2010, true);
+
+    const library = [book1, book2, book3];
+
+    function borrowBook(title) {
+      let book = undefined;
+      for (let i = 0; i < library.length; ++i) {
+        if (library[i].title === title) {
+          book = library[i]
+        }
+      }
+      if (book) {
+        if (book.isAvailable) {
+          book.isAvailable = false;
+          console.log("You have successfully borrowed " + book.title);
+        } else {
+          console.log("Sorry, " + book.title + " is not available");
+        }
+      } else {
+        console.log("Sorry, we don't have a book titled " + title + " in the library.");
+      }
+    }
+
+
+    borrowBook("The Great Gatsby");
+    borrowBook("1984");
+    borrowBook("To Kill a Mockingbird");
+    borrowBook("The Great Gatsby");
+
+  </script>
+</body>
+
+</html>
